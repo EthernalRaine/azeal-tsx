@@ -3,6 +3,7 @@ import libFs from "fs";
 import libPath from "path"
 
 import g_jsonData from "../cfg/config.json";
+import g_tokenData from "../cfg/token.json";
 const g_client = new libDiscordJs.Client({ intents: [
     libDiscordJs.GatewayIntentBits.Guilds, 
     libDiscordJs.GatewayIntentBits.GuildMembers,
@@ -37,6 +38,6 @@ g_client.on('ready', () => {
     loadModules("modules/event_commands", g_eventCommandHandler);
 });
 
-g_client.login(g_jsonData.token).then(() => {
+g_client.login(g_tokenData.token).then(() => {
     g_logger.info("discord.js", "sucessfully authenticated with discord!");
 });
