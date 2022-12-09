@@ -4,7 +4,6 @@ import config from "../../cfg/config.json"
 
 export default (client: Client, commandOptions: any) => {
     let {
-        testing = true,
         restricted = false,
         guild_id = 0,
         name,

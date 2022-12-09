@@ -5,7 +5,6 @@ import string from "../util/string";
 
 export default (client: Client, commandOptions: any) => {
     let {
-        testing = true,
         global = false,
         guild_id = 0,
         name,

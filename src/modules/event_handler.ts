@@ -11,7 +11,7 @@ export default (client: Client, commandOptions: any) => {
         callback
     } = commandOptions;
 
-    logger.info("Event Command", `Registered Command: ${name}`);
+    logger.info("Event Handler", `Registered Event Callback: ${name}`);
     
     switch (eventType) {
         case Events.GuildMemberAdd: 

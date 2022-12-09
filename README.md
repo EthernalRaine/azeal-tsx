@@ -4,30 +4,10 @@ based of phantom-im/im-discord-bot
 
 ## Options for Commands
 
-Legacy Commands:
-
-```ts
-    let {
-        testing = true,
-        restricted = false,
-        guild_id = 0,
-        name,
-        desc,
-        commands,
-        expectedArguments = "",
-        minimumArguments = 0,
-        maxmimumArguments = 0,
-        requiredRoles =  [],
-        permissions =  [],
-        callback
-    } = commandOptions;
-```
-
 Slash Commands:
 
 ```ts
     let {
-        testing = true,
         global = false,
         guild_id = 0,
         name,
@@ -37,6 +17,16 @@ Slash Commands:
         options = [],
         callback
     } = commandOptions;
+
+    export const options = [
+    {
+        name: '',
+        description: '',
+        required: true/false,
+        type: //https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type
+    },
+    ...
+]
 ```
 
 Event Commands:
@@ -49,4 +39,22 @@ Event Commands:
         eventType, 
         callback
     } = commandOptions; 
+```
+
+~~Legacy Commands~~: (Deprecated, Not Recommended)
+
+```ts
+    let {
+        restricted = false,
+        guild_id = 0,
+        name,
+        desc,
+        commands,
+        expectedArguments = "",
+        minimumArguments = 0,
+        maxmimumArguments = 0,
+        requiredRoles =  [],
+        permissions =  [],
+        callback
+    } = commandOptions;
 ```
