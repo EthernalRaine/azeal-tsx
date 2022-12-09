@@ -1,4 +1,4 @@
-import libDiscordJs from 'discord.js';
+import libDiscordJs, { ActivityType } from 'discord.js';
 import libFs from "fs";
 import libPath from "path"
 
@@ -8,6 +8,8 @@ const g_client = new libDiscordJs.Client({ intents: [
     libDiscordJs.GatewayIntentBits.Guilds, 
     libDiscordJs.GatewayIntentBits.GuildMembers,
     libDiscordJs.GatewayIntentBits.GuildMessages, 
+    libDiscordJs.GatewayIntentBits.GuildVoiceStates,
+    libDiscordJs.GatewayIntentBits.GuildPresences,
     libDiscordJs.GatewayIntentBits.MessageContent, 
 ] });
 
@@ -33,6 +35,15 @@ function loadModules(dir: string, fn: any) {
 
 g_client.on('ready', () => {
     g_logger.info("discord.js", "bot is now ready!");
+
+    g_client.user?.setPresence({
+        status:'idle',
+        activities: [{
+            name: "your stories... <3",
+            type: ActivityType.Listening
+        }]
+    })
+
     loadModules("modules/legacy_commands", g_legacyCommandHandler);
     loadModules("modules/slash_commands", g_slashCommandHandler);
     loadModules("modules/event_commands", g_eventCommandHandler);
@@ -41,3 +52,9 @@ g_client.on('ready', () => {
 g_client.login(g_tokenData.token).then(() => {
     g_logger.info("discord.js", "sucessfully authenticated with discord!");
 });
+
+process.on('uncaughtException', (err) => {
+    g_logger.error("Uncaught Exception", "Error Name: %s", err.name)
+    g_logger.error("Uncaught Exception", "Error Message: %s", err.message)
+    g_logger.error("Uncaught Exception", "Error Stack: %s", err.stack)
+})

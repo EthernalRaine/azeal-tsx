@@ -1,4 +1,6 @@
-# im-discord-bot
+# azeal bot
+
+based of phantom-im/im-discord-bot
 
 ## Options for Commands
 

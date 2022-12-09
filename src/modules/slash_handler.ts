@@ -48,18 +48,12 @@ export default (client: Client, commandOptions: any) => {
 
             if (config.lockdown) {
                 
-                if (!interaction.member?.roles.cache.has(config.lockdown_role) || !(interaction.member?.id === config.ownerid)) {
-                    interaction.reply("🛑**The Bot is on Lockdown Mode**🛑 You cannot use this bot right now!");
+                if (!(interaction.member?.id === config.ownerid)) {
+                    interaction.reply("⚠️*The Bot is on Lockdown/Testing Mode*⚠️ You cannot use this bot right now!");
                     return;
                 }
             }
-            
-            if (testing) {
-                if (!interaction.member?.roles.cache.has(config.tester_role)) {
-                    interaction.reply(`⚠️*This command is for Testers only and can be only be used by <@&${config.tester_role}>*⚠️`);
-                    return;
-                }
-            }
+        
 
             if (permissions.length) {
                 for (const perms of permissions) {

@@ -2,7 +2,7 @@ import libSprintf from "sprintf-js"
 import libAnsiColor from "ansi-colors"
 
 function log(prefix: string, suffix: string, text: string, ...format: any[]) {
-    console.log(libSprintf.sprintf(libSprintf.sprintf("%s | %s -> %s: %s", libAnsiColor.blue("phantom | im-discord-bot"), prefix, libAnsiColor.magenta(suffix), text), format))
+    console.log(libSprintf.sprintf(libSprintf.sprintf("%s | %s -> %s: %s", libAnsiColor.blue("azeal-tsx"), prefix, libAnsiColor.magenta(suffix), text), format))
 }
 
 export default {
