@@ -14,6 +14,7 @@ const g_client = new libDiscordJs.Client({ intents: [
 ] });
 
 import g_logger from "./util/logger"
+import g_ytrss from "./rss/youtube"
 
 import g_legacyCommandHandler from './modules/legacy_handler'
 import g_slashCommandHandler from './modules/slash_handler'
@@ -47,6 +48,9 @@ g_client.on('ready', () => {
     loadModules("modules/legacy_commands", g_legacyCommandHandler);
     loadModules("modules/slash_commands", g_slashCommandHandler);
     loadModules("modules/event_commands", g_eventCommandHandler);
+
+    setTimeout(g_ytrss.checkVideo, 300000, g_client);
+    g_logger.info("RSS Feed", "Launched Youtube RSS Checker");
 });
 
 g_client.login(g_tokenData.token).then(() => {
