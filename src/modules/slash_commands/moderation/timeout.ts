@@ -1,5 +1,6 @@
 import { ApplicationCommandOptionType, Client, Interaction, PermissionsBitField } from "discord.js";
 import ms from "ms";
+import embed from "../../../util/embed";
 
 export const global = true;
 export const name = "timeout";
@@ -34,8 +35,15 @@ export function callback(interaction: Interaction, client: Client) {
         const duration = interaction.options.getString("time");
         const reason = interaction.options.getString('reason');
 
+        const dm = embed.thumbnail("You've been Timed Out!", `You have been Timed Out from Azeal's Story Circle for ${duration}!\nReason: ${reason}`, user?.displayAvatarURL() as string, client);
+
+        user?.send({embeds: [dm]})
+
         user?.timeout(ms(duration as string), reason as string)
-        interaction.reply("User successfully timed out!");
+
+        const reply = embed.thumbnail("User Timed Out", `<@${user?.id}> has been timed out successfully!`, user?.displayAvatarURL() as string, client);
+
+        interaction.reply({embeds: [reply]});
     }
 
 }

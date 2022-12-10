@@ -10,6 +10,7 @@ const g_client = new libDiscordJs.Client({ intents: [
     libDiscordJs.GatewayIntentBits.GuildMessages, 
     libDiscordJs.GatewayIntentBits.GuildVoiceStates,
     libDiscordJs.GatewayIntentBits.GuildPresences,
+    libDiscordJs.GatewayIntentBits.DirectMessages,
     libDiscordJs.GatewayIntentBits.MessageContent, 
 ] });
 
@@ -45,12 +46,12 @@ g_client.on('ready', () => {
         }]
     })
 
+    setTimeout(g_ytrss.checkVideo, 300000, g_client);
+    g_logger.info("RSS Feed", "Launched Youtube RSS Checker");
+
     loadModules("modules/legacy_commands", g_legacyCommandHandler);
     loadModules("modules/slash_commands", g_slashCommandHandler);
     loadModules("modules/event_commands", g_eventCommandHandler);
-
-    setTimeout(g_ytrss.checkVideo, 300000, g_client);
-    g_logger.info("RSS Feed", "Launched Youtube RSS Checker");
 });
 
 g_client.login(g_tokenData.token).then(() => {

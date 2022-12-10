@@ -1,6 +1,6 @@
 import { Client, EmbedBuilder } from "discord.js"
 
-const version = "Beta 2"
+const version = "Beta 3"
 
 export default {
     async changelog(changelog: string, client: Client) {

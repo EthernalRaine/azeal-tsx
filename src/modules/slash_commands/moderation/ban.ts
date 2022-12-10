@@ -1,15 +1,16 @@
 import { ApplicationCommandOptionType, Client, Interaction, PermissionsBitField } from "discord.js";
+import embed from "../../../util/embed";
 
 export const global = true;
-export const name = "kick";
-export const desc = "kick a user";
+export const name = "ban";
+export const desc = "Ban a user";
 export const permissions = [
     PermissionsBitField.Flags.BanMembers
 ]
 export const options = [
     {
         name: 'user',
-        description: 'the user who to kick',
+        description: 'the user who to ban',
         required: true,
         type: ApplicationCommandOptionType.User
     },
@@ -25,8 +26,16 @@ export function callback(interaction: Interaction, client: Client) {
         const user = interaction.options.getMember('user');
         const reason = interaction.options.getString('reason');
 
-        user?.kick(reason as string);
+        const dm = embed.thumbnail("You've been Banned!", `You have been banned from Azeal's Story Circle!\nReason: ${reason}`, user?.displayAvatarURL() as string, client);
 
-        interaction.reply("Successfully kicked User!");
+        user?.send({embeds: [dm]})
+
+        user?.ban({
+            reason: reason as string   
+        })
+
+        const reply = embed.thumbnail("User Banned", `<@${user?.id}> has been banned successfully!`, user?.displayAvatarURL() as string, client);
+
+        interaction.reply({embeds: [reply]});
     }
 }

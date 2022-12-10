@@ -11,5 +11,7 @@ export function callback(message: Message, args: string, client: Client) {
 + Added Moderation Commands
 + Added Custom Status Message
 
-~ Improved Embeds\`\`\``, client);
+~ Improved Embeds
+~ Replaced all regular Replies with Embeds\`\`\``, client);
+    message.delete();
 }
