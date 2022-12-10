@@ -1,5 +1,6 @@
 import { Client, EmbedBuilder, GuildMember } from "discord.js";
 import { Events } from "../../util/events";
+import version from "../../util/version";
 
 export const restricted = false;
 export const name = "Welcomer"
@@ -10,7 +11,7 @@ export function callback(member: GuildMember, client: Client) {
                                     .setThumbnail(member.displayAvatarURL())
                                     .setDescription("Welcome to Azeal's Story Circle")
                                     .setTimestamp()
-                                    .setFooter({ text: "Made by Lu (lnkexploit)", iconURL: "https://cdn.discordapp.com/avatars/277524510360731649/0fc56a48527ba90dfb030506a00c2b9b.png?size=4096" });
+                                    .setFooter({ text: `Running on Version: ${version.getVersion()}`, iconURL: client.user?.displayAvatarURL() })
           
     let channel = member.guild.channels.cache.get("1050898265698222211");
 

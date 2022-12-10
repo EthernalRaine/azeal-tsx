@@ -70,7 +70,7 @@ export default (client: Client, commandOptions: any) => {
                     return;
                 }
 
-                callback(msg, args, args.join(' '), client);
+                callback(msg, args, client);
             }
         }
     });

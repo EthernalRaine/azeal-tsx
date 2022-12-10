@@ -35,7 +35,7 @@ function loadModules(dir: string, fn: any) {
 }
 
 g_client.on('ready', () => {
-    g_logger.info("discord.js", "bot is now ready!");
+    g_logger.info("discord.js", "azeal bot is now ready!");
 
     g_client.user?.setPresence({
         status:'idle',

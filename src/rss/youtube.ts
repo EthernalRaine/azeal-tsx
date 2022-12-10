@@ -8,9 +8,6 @@ export default {
     checkVideo: async (client: Client) => {
         let parse: Parser = new Parser();
         const data = await parse.parseURL("https://www.youtube.com/feeds/videos.xml?channel_id=UClLOsBKtKS8i9N12l6Uza3g")
-        
-        //console.log(data);
-        //console.log(data.items[0].id);
 
         if (config.id !== data.items[0].id) {
             fs.writeFileSync(`${__dirname}/../../cfg/video.json`, JSON.stringify({ id: data.items[0].id}))
@@ -20,6 +17,7 @@ export default {
             
             if (channel?.isTextBased()) {
                 channel.send(`New video out! ${data.items[0].link as string}`)
+                logger.info("RSS Feed", "New Video Published");
             }
         }
     }
